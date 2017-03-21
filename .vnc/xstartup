@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Uncomment the following two lines for normal desktop:
+# unset SESSION_MANAGER
+# exec /etc/X11/xinit/xinitrc
+
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey -cursor_name left_ptr
+vncconfig -iconic &
+autocutsel -s CLIPBOARD -fork &
+autocutsel -s PRIMARY -fork &
+#x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+#x-window-manager &
+
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+		eval `dbus-launch --sh-syntax –exit-with-session`
+		echo "D-BUS per-session daemon address is: \
+		$DBUS_SESSION_BUS_ADDRESS"
+fi
+
+gnome-terminal &
+nautilus &
+gnome-panel &
+gnome-settings-daemon &
+metacity &
