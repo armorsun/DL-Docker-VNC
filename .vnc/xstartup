@@ -8,8 +8,8 @@
 [ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
 xsetroot -solid grey -cursor_name left_ptr
 vncconfig -iconic &
-autocutsel -s CLIPBOARD -fork &
-autocutsel -s PRIMARY -fork &
+#autocutsel -s CLIPBOARD -fork &
+#autocutsel -s PRIMARY -fork &
 #x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
 #x-window-manager &
 
@@ -20,7 +20,7 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
 fi
 
 gnome-terminal &
-nautilus &
 gnome-panel &
 gnome-settings-daemon &
 metacity &
+nemo &
